@@ -1,47 +1,275 @@
-<!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Muhammad Sabian Aziz - Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Sabian Aziz - Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0d0e12;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 40px 8%;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #fff; }
 
-				<!-- Header -->
-					<header id="header">
-						<h1>Muhammad Sabian Aziz</h1>
-						<p>Computer Engineer &nbsp;&bull;&nbsp; IoT & Embedded Systems &nbsp;&bull;&nbsp; Applied AI Developer</p>
-						<nav>
-							<ul>
-								<li><a href="https://github.com/SabianDevil" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="https://www.linkedin.com/in/sabian-aziz-b81458282/" target="_blank" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								<li><a href="mailto:sabian4speed@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-						</nav>
-					</header>
+        /* ABOUT SECTION */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .about-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .about-text p {
+            color: #94a3b8;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .badge {
+            background: #1e293b;
+            color: #38bdf8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #334155;
+        }
+        .profile-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid #334155;
+        }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; Muhammad Sabian Aziz. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-					</footer>
+        /* PROJECTS SECTION */
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .project-card {
+            background: #13151c;
+            border: 1px solid #222734;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+        
+        /* SLIDER GAMBER PROYEK */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slide-img.active {
+            opacity: 1;
+        }
 
-			</div>
-		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+        .project-info {
+            padding: 20px;
+        }
+        .project-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .project-info p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        .project-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .about-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">SABIAN.</div>
+        <nav>
+            <a href="#about">ABOUT</a>
+            <a href="#projects">WORK</a>
+            <a href="mailto:sabian4speed@gmail.com">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-container">
+        <div class="about-text">
+            <h1>ABOUT ME</h1>
+            <p>Computer Engineering student at Telkom University specializing in IoT, Embedded Systems, and Applied AI. Experienced in developing ESP32-S3 edge devices, implementing Federated Learning for cybersecurity, and building end-to-end data pipelines.</p>
+            <p>Certified by NVIDIA Deep Learning Institute (DLI) in Fundamentals of Deep Learning.</p>
+            
+            <div class="badges">
+                <span class="badge">ESP32-S3</span>
+                <span class="badge">C/C++</span>
+                <span class="badge">Python</span>
+                <span class="badge">Pandas</span>
+                <span class="badge">SQLite</span>
+                <span class="badge">Federated Learning</span>
+                <span class="badge">Deep Learning</span>
+                <span class="badge">Git</span>
+            </div>
+        </div>
+        <div>
+            <!-- Ganti gambar profil di bawah ini -->
+            <img src="https://via.placeholder.com/400x500/1e293b/ffffff?text=Sabian+Aziz" alt="Muhammad Sabian Aziz" class="profile-img">
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2 class="section-title">PROJECTS</h2>
+        <div class="projects-grid">
+
+            <!-- PROJECT 1 -->
+            <div class="project-card">
+                <div class="slider-container" id="slider1">
+                    <!-- Masukkan gambar-gambar proyek 1 Anda di sini -->
+                    <img src="https://via.placeholder.com/600x400/1e293b/38bdf8?text=ESP32+Hardware+Device" class="slide-img active" alt="ESP32 Device">
+                    <img src="https://via.placeholder.com/600x400/0f172a/38bdf8?text=RFID+%26+Barcode+Scanner" class="slide-img" alt="RFID Scanner">
+                    <img src="https://via.placeholder.com/600x400/334155/38bdf8?text=Latency+Testing+Graph" class="slide-img" alt="Latency Graph">
+                </div>
+                <div class="project-info">
+                    <h3>IoT WMS Edge Scanner</h3>
+                    <p>Engineered an ESP32-S3 edge device integrating MFRC522 RFID and GM65 barcode modules via SPI/UART with real-time processing and optimized latency.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/SabianDevil" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card">
+                <div class="slider-container" id="slider2">
+                    <!-- Masukkan gambar-gambar proyek 2 Anda di sini -->
+                    <img src="https://via.placeholder.com/600x400/1e293b/a855f7?text=Federated+Learning+Architecture" class="slide-img active" alt="FL Architecture">
+                    <img src="https://via.placeholder.com/600x400/0f172a/a855f7?text=SBC+Network+Testbed" class="slide-img" alt="SBC Testbed">
+                </div>
+                <div class="project-info">
+                    <h3>IoT CIDS Federated Learning</h3>
+                    <p>Co-authored research for DRTPM BIMA Grant evaluating Federated Learning algorithms for intrusion detection in IoT network infrastructures.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/SabianDevil" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="project-card">
+                <div class="slider-container" id="slider3">
+                    <!-- Masukkan gambar-gambar proyek 3 Anda di sini -->
+                    <img src="https://via.placeholder.com/600x400/1e293b/34d399?text=Star+Schema+Diagram" class="slide-img active" alt="Star Schema">
+                    <img src="https://via.placeholder.com/600x400/0f172a/34d399?text=ETL+Pipeline+Execution" class="slide-img" alt="ETL Pipeline">
+                </div>
+                <div class="project-info">
+                    <h3>Star Schema Data Pipeline</h3>
+                    <p>Designed and loaded Star Schema relational data warehouses using Python, Pandas, and SQLite for analytics pipelines.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/SabianDevil" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SCRIPT OTOMATIS SWAP GAMBAR -->
+    <script>
+        function startImageSlider(sliderId, intervalTime) {
+            const container = document.getElementById(sliderId);
+            const images = container.getElementsByClassName('slide-img');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, intervalTime);
+        }
+
+        // Jalankan slider untuk setiap kartu proyek dengan jeda waktu bergantian
+        startImageSlider('slider1', 3000); // berganti setiap 3 detik
+        startImageSlider('slider2', 3500); // berganti setiap 3.5 detik
+        startImageSlider('slider3', 4000); // berganti setiap 4 detik
+    </script>
+</body>
 </html>
