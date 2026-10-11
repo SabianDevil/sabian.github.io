@@ -26,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* FIXED NAVBAR DI ATAS (BISA DIKLIK KAPAN SAJA) */
+        /* NAVBAR ATAS (AWALNYA TERSEMBUNYI, MUNCUL DENGAN TRANSISI) */
         header {
             position: fixed;
             top: 0;
@@ -36,11 +36,25 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(13, 14, 18, 0.85);
+            background: rgba(13, 14, 18, 0.9);
             backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            
+            /* Efek Transisi Muncul */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
         }
+
+        /* Kelas ini akan aktif via JavaScript saat kita scroll ke bawah */
+        header.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.3rem;
@@ -88,7 +102,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 100px 20px 40px;
+            padding: 40px 20px;
         }
 
         .hero-card {
@@ -241,7 +255,7 @@
             border-color: #38bdf8;
         }
         
-        /* SLIDER GAMBAR PROYEK (CSS DIBERSIHKAN DARI OVERLAP) */
+        /* SLIDER GAMBAR PROYEK */
         .slider-container {
             position: relative;
             width: 100%;
@@ -311,8 +325,8 @@
 </head>
 <body>
 
-    <!-- FIXED NAVBAR -->
-    <header>
+    <!-- NAVBAR ATAS (MUNCUL HALUS SAAT DI-SCROLL KE BAWAH) -->
+    <header id="navbar">
         <a href="#" class="logo">SABIAN.</a>
         <nav>
             <a href="#about">About</a>
@@ -326,7 +340,7 @@
     <div class="hero-overlay"></div>
 
     <!-- HERO SECTION (DIMENSION STYLE) -->
-    <div class="hero-container">
+    <div class="hero-container" id="home">
         <div class="hero-card">
             <h1>Muhammad Sabian Aziz</h1>
             <p>Computer Engineer &nbsp;&bull;&nbsp; IoT & Embedded &nbsp;&bull;&nbsp; Applied AI</p>
@@ -426,8 +440,20 @@
         <p style="margin-top: 10px;">&copy; Muhammad Sabian Aziz. Built with HTML5 & CSS.</p>
     </footer>
 
-    <!-- SCRIPT OTOMATIS SWAP GAMBAR BARU -->
+    <!-- SCRIPT TRANSISI NAVBAR & SLIDER GAMBAR -->
     <script>
+        // Efek Transisi Navbar Muncul Saat Scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            // Navbar akan muncul jika layar sudah di-scroll ke bawah lebih dari 400px (melewati area hero)
+            if (window.scrollY > 400) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Script Slider Gambar Proyek
         function startImageSlider(sliderId, intervalTime) {
             const container = document.getElementById(sliderId);
             const images = container.getElementsByClassName('slide-img');
