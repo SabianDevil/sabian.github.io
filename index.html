@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* MENAMBAHKAN TRANSISI HALUS (SMOOTH SCROLL) */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* HERO SECTION (ALA DIMENSION) */
+        /* HERO BACKGROUND & OVERLAY */
         .hero-bg {
             position: fixed;
             top: 0;
@@ -49,19 +54,18 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .hero-card {
             background: rgba(16, 17, 19, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 60px 40px;
+            padding: 50px 40px;
             max-width: 650px;
             width: 100%;
             border-radius: 4px;
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            margin-bottom: 40px;
         }
 
         .hero-card h1 {
@@ -279,7 +283,7 @@
             <nav class="hero-nav">
                 <a href="#about">About</a>
                 <a href="#projects">Work</a>
-                <a href="mailto:sabian4speed@gmail.com">Contact</a>
+                <a href="#contact">Contact</a>
             </nav>
         </div>
     </div>
@@ -366,8 +370,10 @@
 
     </div>
 
-    <footer>
-        <p>&copy; Muhammad Sabian Aziz. Built with HTML5 & CSS.</p>
+    <!-- FOOTER / CONTACT SECTION -->
+    <footer id="contact">
+        <p>Get in touch: <a href="mailto:sabian4speed@gmail.com" style="color: #38bdf8; text-decoration: none;">sabian4speed@gmail.com</a></p>
+        <p style="margin-top: 10px;">&copy; Muhammad Sabian Aziz. Built with HTML5 & CSS.</p>
     </footer>
 
     <!-- SCRIPT OTOMATIS SWAP GAMBAR -->
