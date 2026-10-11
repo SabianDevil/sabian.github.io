@@ -26,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* TOP NAVBAR (STICKY / MUNCUL KETIKA KARTU UTAMA KELUAR LAYAR) */
+        /* TOP NAVBAR (STICKY / MUNCUL KETIKA HERO SECTION KELUAR LAYAR) */
         header {
             position: fixed;
             top: 0;
@@ -47,7 +47,6 @@
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
 
-        /* Aktif ketika hero card mulai meninggalkan layar */
         header.scrolled {
             transform: translateY(0);
             opacity: 1;
@@ -89,55 +88,47 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(16, 17, 19, 0.75);
+            background: rgba(16, 17, 19, 0.5); /* Sedikit lebih transparan agar gambar latar menyatu indah */
             z-index: -1;
         }
 
+        /* HERO SECTION TANPA KOTAK */
         .hero-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+            justify-content: center; /* Mengatur vertikal di tengah (bisa diubah ke flex-end jika ingin di bawah) */
+            align-items: flex-start;  /* Menjajarkan teks ke kiri ala web developer internasional */
+            padding: 0 8%;
+            text-align: left;
         }
 
-        .hero-card {
-            background: rgba(16, 17, 19, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 50px 40px;
-            max-width: 650px;
+        .hero-content {
+            max-width: 800px;
             width: 100%;
-            border-radius: 6px;
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            transition: opacity 0.3s ease;
         }
 
-        .hero-card h1 {
+        .hero-content h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 700;
+            color: #ffffff;
         }
 
-        .hero-card p {
+        .hero-content p {
             color: #b0b5bc;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 15px 0;
+            font-weight: 500;
         }
 
         .hero-nav {
             display: flex;
-            justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
         }
@@ -145,7 +136,7 @@
         .hero-nav a {
             color: #fff;
             text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 10px 25px;
             font-size: 0.85rem;
             letter-spacing: 2px;
@@ -315,8 +306,8 @@
 
         @media (max-width: 768px) {
             .about-container { grid-template-columns: 1fr; }
-            .hero-card { padding: 40px 20px; }
-            .hero-card h1 { font-size: 1.8rem; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .hero-container { align-items: center; text-align: center; }
             header { padding: 15px 5%; }
             nav a { margin-left: 12px; font-size: 0.75rem; }
         }
@@ -324,7 +315,7 @@
 </head>
 <body>
 
-    <!-- TOP NAVBAR (MELUNCUR HALUS DARI ATAS) -->
+    <!-- TOP NAVBAR -->
     <header id="navbar">
         <a href="#home" class="logo">SABIAN.</a>
         <nav>
@@ -338,9 +329,9 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (Tanpa Kotak, Menyatu dengan Background) -->
     <div class="hero-container" id="home">
-        <div class="hero-card" id="heroCard">
+        <div class="hero-content" id="heroTarget">
             <h1>Muhammad Sabian Aziz</h1>
             <p>Computer Engineer &nbsp;&bull;&nbsp; IoT & Embedded &nbsp;&bull;&nbsp; Applied AI</p>
             <nav class="hero-nav">
@@ -439,15 +430,13 @@
         <p style="margin-top: 10px;">&copy; Muhammad Sabian Aziz. Built with HTML5 & CSS.</p>
     </footer>
 
-    <!-- SCRIPT INTERSECTION OBSERVER UNTUK TRANSISI SLIDE-DOWN NAVBAR -->
+    <!-- SCRIPT INTERSECTION OBSERVER & SLIDER -->
     <script>
-        const heroCard = document.getElementById('heroCard');
+        const heroTarget = document.getElementById('heroTarget');
         const navbar = document.getElementById('navbar');
 
-        // Menggunakan IntersectionObserver untuk mendeteksi persis kapan kartu utama mulai melewati batas atas layar
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Jika heroCard TIDAK LAGI terlihat di layar (artinya user scroll ke bawah melewatinya)
                 if (!entry.isIntersecting) {
                     navbar.classList.add('scrolled');
                 } else {
@@ -455,12 +444,11 @@
                 }
             });
         }, {
-            threshold: 0.1 // Memicu transisi begitu 10% bagian kartu mulai keluar layar
+            threshold: 0.1
         });
 
-        observer.observe(heroCard);
+        observer.observe(heroTarget);
 
-        // Script Slider Gambar Proyek
         function startImageSlider(sliderId, intervalTime) {
             const container = document.getElementById(sliderId);
             const images = container.getElementsByClassName('slide-img');
