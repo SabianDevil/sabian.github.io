@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* MENAMBAHKAN TRANSISI HALUS (SMOOTH SCROLL) */
         html {
             scroll-behavior: smooth;
         }
@@ -26,6 +25,41 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+        /* FIXED NAVBAR DI ATAS (BISA DIKLIK KAPAN SAJA) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(13, 14, 18, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            text-decoration: none;
+        }
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #38bdf8; }
 
         /* HERO BACKGROUND & OVERLAY */
         .hero-bg {
@@ -54,7 +88,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 100px 20px 40px;
         }
 
         .hero-card {
@@ -63,15 +97,15 @@
             padding: 50px 40px;
             max-width: 650px;
             width: 100%;
-            border-radius: 4px;
+            border-radius: 6px;
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
         }
 
         .hero-card h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            letter-spacing: 4px;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 15px;
             font-weight: 700;
@@ -79,7 +113,7 @@
 
         .hero-card p {
             color: #b0b5bc;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 30px;
@@ -106,6 +140,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             background: transparent;
+            margin: 0;
         }
 
         .hero-nav a:hover {
@@ -113,10 +148,10 @@
             color: #101113;
         }
 
-        /* CONTENT SECTION (ABOUT & PROJECTS) */
+        /* MAIN CONTENT AREA */
         .main-content {
             background-color: #0d0e12;
-            padding: 80px 8%;
+            padding: 100px 8% 80px;
             position: relative;
             z-index: 2;
             border-top: 2px solid rgba(255, 255, 255, 0.1);
@@ -206,12 +241,13 @@
             border-color: #38bdf8;
         }
         
-        /* SLIDER GAMBAR PROYEK */
+        /* SLIDER GAMBAR PROYEK (CSS DIBERSIHKAN DARI OVERLAP) */
         .slider-container {
             position: relative;
             width: 100%;
             height: 220px;
             overflow: hidden;
+            background: #1e293b;
         }
 
         .slide-img {
@@ -222,11 +258,13 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 1;
         }
 
         .slide-img.active {
             opacity: 1;
+            z-index: 2;
         }
 
         .project-info {
@@ -265,11 +303,23 @@
         @media (max-width: 768px) {
             .about-container { grid-template-columns: 1fr; }
             .hero-card { padding: 40px 20px; }
-            .hero-card h1 { font-size: 2rem; }
+            .hero-card h1 { font-size: 1.8rem; }
+            header { padding: 15px 5%; }
+            nav a { margin-left: 12px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- FIXED NAVBAR -->
+    <header>
+        <a href="#" class="logo">SABIAN.</a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
     <!-- HERO BACKGROUND & OVERLAY -->
     <div class="hero-bg"></div>
@@ -376,7 +426,7 @@
         <p style="margin-top: 10px;">&copy; Muhammad Sabian Aziz. Built with HTML5 & CSS.</p>
     </footer>
 
-    <!-- SCRIPT OTOMATIS SWAP GAMBAR -->
+    <!-- SCRIPT OTOMATIS SWAP GAMBAR BARU -->
     <script>
         function startImageSlider(sliderId, intervalTime) {
             const container = document.getElementById(sliderId);
