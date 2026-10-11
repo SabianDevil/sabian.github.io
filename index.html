@@ -26,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* NAVBAR ATAS (AWALNYA TERSEMBUNYI, MUNCUL DENGAN TRANSISI) */
+        /* TOP NAVBAR (STICKY / MUNCUL KETIKA KARTU UTAMA KELUAR LAYAR) */
         header {
             position: fixed;
             top: 0;
@@ -35,29 +35,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
+            padding: 18px 8%;
             background: rgba(13, 14, 18, 0.9);
             backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             
-            /* Efek Transisi Muncul */
+            /* Transisi Morphing Halus dari Atas */
+            transform: translateY(-100%);
             opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px);
-            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
 
-        /* Kelas ini akan aktif via JavaScript saat kita scroll ke bawah */
-        header.visible {
-            opacity: 1;
-            visibility: visible;
+        /* Aktif ketika hero card mulai meninggalkan layar */
+        header.scrolled {
             transform: translateY(0);
+            opacity: 1;
         }
 
         .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 2px;
             color: #fff;
@@ -114,6 +112,7 @@
             border-radius: 6px;
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
         }
 
         .hero-card h1 {
@@ -325,9 +324,9 @@
 </head>
 <body>
 
-    <!-- NAVBAR ATAS (MUNCUL HALUS SAAT DI-SCROLL KE BAWAH) -->
+    <!-- TOP NAVBAR (MELUNCUR HALUS DARI ATAS) -->
     <header id="navbar">
-        <a href="#" class="logo">SABIAN.</a>
+        <a href="#home" class="logo">SABIAN.</a>
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Work</a>
@@ -339,9 +338,9 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
 
-    <!-- HERO SECTION (DIMENSION STYLE) -->
+    <!-- HERO SECTION -->
     <div class="hero-container" id="home">
-        <div class="hero-card">
+        <div class="hero-card" id="heroCard">
             <h1>Muhammad Sabian Aziz</h1>
             <p>Computer Engineer &nbsp;&bull;&nbsp; IoT & Embedded &nbsp;&bull;&nbsp; Applied AI</p>
             <nav class="hero-nav">
@@ -440,18 +439,26 @@
         <p style="margin-top: 10px;">&copy; Muhammad Sabian Aziz. Built with HTML5 & CSS.</p>
     </footer>
 
-    <!-- SCRIPT TRANSISI NAVBAR & SLIDER GAMBAR -->
+    <!-- SCRIPT INTERSECTION OBSERVER UNTUK TRANSISI SLIDE-DOWN NAVBAR -->
     <script>
-        // Efek Transisi Navbar Muncul Saat Scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            // Navbar akan muncul jika layar sudah di-scroll ke bawah lebih dari 400px (melewati area hero)
-            if (window.scrollY > 400) {
-                navbar.classList.add('visible');
-            } else {
-                navbar.classList.remove('visible');
-            }
+        const heroCard = document.getElementById('heroCard');
+        const navbar = document.getElementById('navbar');
+
+        // Menggunakan IntersectionObserver untuk mendeteksi persis kapan kartu utama mulai melewati batas atas layar
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Jika heroCard TIDAK LAGI terlihat di layar (artinya user scroll ke bawah melewatinya)
+                if (!entry.isIntersecting) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }, {
+            threshold: 0.1 // Memicu transisi begitu 10% bagian kartu mulai keluar layar
         });
+
+        observer.observe(heroCard);
 
         // Script Slider Gambar Proyek
         function startImageSlider(sliderId, intervalTime) {
