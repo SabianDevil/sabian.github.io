@@ -88,7 +88,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(16, 17, 19, 0.5); /* Sedikit lebih transparan agar gambar latar menyatu indah */
+            background: rgba(16, 17, 19, 0.5);
             z-index: -1;
         }
 
@@ -97,8 +97,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Mengatur vertikal di tengah (bisa diubah ke flex-end jika ingin di bawah) */
-            align-items: flex-start;  /* Menjajarkan teks ke kiri ala web developer internasional */
+            justify-content: center;
+            align-items: flex-start;
             padding: 0 8%;
             text-align: left;
         }
@@ -187,18 +187,33 @@
         .badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             margin-top: 20px;
         }
 
         .badge {
-            background: #1e293b;
-            color: #38bdf8;
+            background: #13151c;
+            color: #94a3b8;
             padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid #334155;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #222734;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .badge:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
         }
 
         .profile-wrapper {
@@ -353,14 +368,14 @@
                 <p>Certified by NVIDIA Deep Learning Institute (DLI) in Fundamentals of Deep Learning.</p>
                 
                 <div class="badges">
-                    <span class="badge">ESP32-S3</span>
-                    <span class="badge">C/C++</span>
-                    <span class="badge">Python</span>
-                    <span class="badge">Pandas</span>
-                    <span class="badge">SQLite</span>
-                    <span class="badge">Federated Learning</span>
-                    <span class="badge">Deep Learning</span>
-                    <span class="badge">Git</span>
+                    <span class="badge"><span class="dot" style="background-color: #38bdf8;"></span>ESP32-S3</span>
+                    <span class="badge"><span class="dot" style="background-color: #f87171;"></span>C/C++</span>
+                    <span class="badge"><span class="dot" style="background-color: #3b82f6;"></span>Python</span>
+                    <span class="badge"><span class="dot" style="background-color: #eab308;"></span>Pandas</span>
+                    <span class="badge"><span class="dot" style="background-color: #06b6d4;"></span>SQLite</span>
+                    <span class="badge"><span class="dot" style="background-color: #a855f7;"></span>Federated Learning</span>
+                    <span class="badge"><span class="dot" style="background-color: #ec4899;"></span>Deep Learning</span>
+                    <span class="badge"><span class="dot" style="background-color: #f97316;"></span>Git</span>
                 </div>
             </div>
             <div class="profile-wrapper">
