@@ -92,7 +92,7 @@
             z-index: -1;
         }
 
-        /* HERO SECTION TANPA KOTAK */
+        /* HERO SECTION */
         .hero-container {
             min-height: 100vh;
             display: flex;
@@ -161,7 +161,7 @@
             border-top: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* ABOUT SECTION (LAYOUT SEPERTI REFERENSI: TEKS KIRI, FOTO KANAN) */
+        /* ABOUT SECTION (TEKS DI KIRI, FOTO DI KANAN) */
         .about-container {
             display: grid;
             grid-template-columns: 1.3fr 0.7fr;
@@ -213,11 +213,13 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, transform 0.2s;
         }
 
         .badge:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            color: #ffffff;
         }
 
         .dot {
@@ -322,7 +324,7 @@
             font-weight: 600;
         }
 
-        /* FOOTER ELEGAN MODERN */
+        /* FOOTER / CONTACT SECTION */
         footer {
             text-align: center;
             padding: 100px 20px 60px;
@@ -427,22 +429,46 @@
     <!-- MAIN CONTENT AREA -->
     <div class="main-content" id="about">
 
-        <!-- ABOUT SECTION (TEKS DI KIRI, FOTO DI KANAN) -->
+        <!-- ABOUT SECTION -->
         <div class="about-container">
             <div class="about-text">
                 <h2>About Me</h2>
-                <p>Computer Engineering student at Telkom University specializing in IoT, Embedded Systems, and Applied AI. Experienced in developing ESP32-S3 edge devices, implementing Federated Learning for cybersecurity, and building end-to-end data pipelines.</p>
-                <p>Certified by NVIDIA Deep Learning Institute (DLI) in Fundamentals of Deep Learning.</p>
+                <p>Computer Engineering student at Telkom University specializing in IoT, Embedded Systems, and Applied AI. Experienced in developing ESP32-S3 edge devices, implementing Federated Learning for cybersecurity, and building end-to-end full-stack data pipelines.</p>
+                <p>Certified by NVIDIA Deep Learning Institute (DLI) in Fundamentals of Deep Learning and actively developing integrated hardware-software architectures.</p>
                 
                 <div class="tech-label">LANGUAGES & TECHNOLOGIES</div>
                 <div class="badges">
+                    <!-- Embedded & IoT -->
                     <span class="badge"><span class="dot" style="background-color: #38bdf8;"></span>ESP32-S3</span>
                     <span class="badge"><span class="dot" style="background-color: #f87171;"></span>C/C++</span>
+                    <span class="badge"><span class="dot" style="background-color: #f59e0b;"></span>Arduino</span>
+                    
+                    <!-- Languages -->
+                    <span class="badge"><span class="dot" style="background-color: #eab308;"></span>Java</span>
                     <span class="badge"><span class="dot" style="background-color: #3b82f6;"></span>Python</span>
+                    <span class="badge"><span class="dot" style="background-color: #a855f7;"></span>PHP</span>
+                    <span class="badge"><span class="dot" style="background-color: #06b6d4;"></span>JavaScript</span>
+                    <span class="badge"><span class="dot" style="background-color: #f97316;"></span>HTML5</span>
+                    <span class="badge"><span class="dot" style="background-color: #2563eb;"></span>CSS3</span>
+                    
+                    <!-- Frameworks & Libraries -->
+                    <span class="badge"><span class="dot" style="background-color: #ef4444;"></span>Laravel</span>
+                    <span class="badge"><span class="dot" style="background-color: #22c55e;"></span>Node.js</span>
+                    <span class="badge"><span class="dot" style="background-color: #10b981;"></span>Vue.js 3</span>
+                    <span class="badge"><span class="dot" style="background-color: #64748b;"></span>Express.js</span>
                     <span class="badge"><span class="dot" style="background-color: #eab308;"></span>Pandas</span>
+
+                    <!-- Databases & Cloud -->
+                    <span class="badge"><span class="dot" style="background-color: #0284c7;"></span>PostgreSQL</span>
+                    <span class="badge"><span class="dot" style="background-color: #0284c7;"></span>MySQL</span>
                     <span class="badge"><span class="dot" style="background-color: #06b6d4;"></span>SQLite</span>
+                    <span class="badge"><span class="dot" style="background-color: #3ecf8e;"></span>Supabase</span>
+
+                    <!-- AI & Systems -->
                     <span class="badge"><span class="dot" style="background-color: #a855f7;"></span>Federated Learning</span>
                     <span class="badge"><span class="dot" style="background-color: #ec4899;"></span>Deep Learning</span>
+                    <span class="badge"><span class="dot" style="background-color: #8b5cf6;"></span>REST API</span>
+                    <span class="badge"><span class="dot" style="background-color: #2563eb;"></span>Docker</span>
                     <span class="badge"><span class="dot" style="background-color: #f97316;"></span>Git</span>
                 </div>
             </div>
@@ -461,13 +487,13 @@
                     <div class="slider-container" id="slider1">
                         <img src="https://via.placeholder.com/600x400/1e293b/38bdf8?text=ESP32+Hardware+Device" class="slide-img active" alt="ESP32 Device">
                         <img src="https://via.placeholder.com/600x400/0f172a/38bdf8?text=RFID+%26+Barcode+Scanner" class="slide-img" alt="RFID Scanner">
-                        <img src="https://via.placeholder.com/600x400/334155/38bdf8?text=Latency+Testing+Graph" class="slide-img" alt="Latency Graph">
+                        <img src="https://via.placeholder.com/600x400/334155/38bdf8?text=Node.js+%26+Vue.js+Dashboard" class="slide-img" alt="Dashboard WMS">
                     </div>
                     <div class="project-info">
                         <h3>IoT WMS Edge Scanner</h3>
-                        <p>Engineered an ESP32-S3 edge device integrating MFRC522 RFID and GM65 barcode modules via SPI/UART with real-time processing and optimized latency.</p>
+                        <p>Integrated digital warehouse management system connecting ESP32-S3 hardware (RFID & Barcode) with Node.js backend API and Vue.js 3 dashboard for real-time stock control.</p>
                         <div class="project-links">
-                            <a href="https://github.com/Sabianzz/IoT-WMS-Edge-Scanner/tree/main" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a>
+                            <a href="https://github.com/SabianDevil" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a>
                         </div>
                     </div>
                 </div>
@@ -514,8 +540,8 @@
             <a href="mailto:sabian4speed@gmail.com" class="contact-email">sabian4speed@gmail.com</a>
             
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/muhammad-sabian-aziz-b81458282/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Sabianzz" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-sabian-aziz/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/SabianDevil" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
 
@@ -544,6 +570,7 @@
 
         function startImageSlider(sliderId, intervalTime) {
             const container = document.getElementById(sliderId);
+            if (!container) return;
             const images = container.getElementsByClassName('slide-img');
             let currentIndex = 0;
 
