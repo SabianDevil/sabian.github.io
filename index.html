@@ -161,19 +161,20 @@
             border-top: 2px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* ABOUT SECTION (LAYOUT SEPERTI REFERENSI: TEKS KIRI, FOTO KANAN) */
         .about-container {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 50px;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
             align-items: center;
             margin-bottom: 100px;
         }
 
         .about-text h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #fff;
             text-transform: uppercase;
         }
@@ -184,11 +185,21 @@
             font-size: 1rem;
         }
 
+        .tech-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: #d97706;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
         .badges {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
         }
 
         .badge {
@@ -218,17 +229,18 @@
 
         .profile-wrapper {
             width: 100%;
-            max-width: 360px;
+            max-width: 420px;
             margin: 0 auto;
         }
 
         .profile-img {
             width: 100%;
-            height: 450px;
+            height: 520px;
             object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #334155;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         /* PROJECTS SECTION */
@@ -310,7 +322,7 @@
             font-weight: 600;
         }
 
-        /* FOOTER ELEGAN MODERN (MENYATU DENGAN CONTOH REFERENSI) */
+        /* FOOTER ELEGAN MODERN */
         footer {
             text-align: center;
             padding: 100px 20px 60px;
@@ -373,7 +385,7 @@
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .about-container { grid-template-columns: 1fr; }
             .hero-content h1 { font-size: 2.3rem; }
             .hero-container { align-items: center; text-align: center; }
@@ -415,13 +427,14 @@
     <!-- MAIN CONTENT AREA -->
     <div class="main-content" id="about">
 
-        <!-- ABOUT SECTION -->
+        <!-- ABOUT SECTION (TEKS DI KIRI, FOTO DI KANAN) -->
         <div class="about-container">
             <div class="about-text">
                 <h2>About Me</h2>
                 <p>Computer Engineering student at Telkom University specializing in IoT, Embedded Systems, and Applied AI. Experienced in developing ESP32-S3 edge devices, implementing Federated Learning for cybersecurity, and building end-to-end data pipelines.</p>
                 <p>Certified by NVIDIA Deep Learning Institute (DLI) in Fundamentals of Deep Learning.</p>
                 
+                <div class="tech-label">LANGUAGES & TECHNOLOGIES</div>
                 <div class="badges">
                     <span class="badge"><span class="dot" style="background-color: #38bdf8;"></span>ESP32-S3</span>
                     <span class="badge"><span class="dot" style="background-color: #f87171;"></span>C/C++</span>
@@ -494,7 +507,7 @@
 
     </div>
 
-    <!-- FOOTER / CONTACT SECTION (PENYESUAIAN PERSIS FOTO REFERENSI) -->
+    <!-- FOOTER / CONTACT SECTION -->
     <footer id="contact">
         <div class="footer-content">
             <span class="contact-label">GET IN TOUCH</span>
