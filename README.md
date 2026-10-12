@@ -2,7 +2,7 @@
 
 Selamat datang di repositori kode untuk website portofolio pribadi saya. Website ini dirancang dengan estetika minimalis, modern, dan cinematic untuk menampilkan proyek-proyek di bidang **IoT, Embedded Systems, dan Applied AI**.
 
-🔗 **Live Website:** [sabian.github.io](https://sabianzz.github.io)
+🔗 **Live Website:** [sabian.github.io](https://sabianzz.github.io/sabian.github.io/)
 
 ---
 
